@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://8288fxo2rom1"]
+
+[ext_resource type="Texture2D" uid="uid://bjvl5l6mrbssk" path="res://Art/Personalizacion/dotpict_20250510_153003.png" id="1_2skr4"]
+[ext_resource type="Script" path="res://Art/Personaje/personaje.gd" id="1_i21ui"]
+[ext_resource type="PackedScene" uid="uid://c52iqkeq78k7p" path="res://Art/Personalizacion/Sombreros/sombreros.tscn" id="3_uggpa"]
+[ext_resource type="Texture2D" uid="uid://5oevgmjf4xsx" path="res://Art/Personalizacion/dotpict_20250510_153056.png" id="4_qhiwf"]
+[ext_resource type="Texture2D" uid="uid://chr81myc8stqr" path="res://Art/Personalizacion/dotpict_20250510_153225.png" id="5_saq20"]
+[ext_resource type="PackedScene" uid="uid://ch03mbgs5x4vm" path="res://Art/Personalizacion/Sombreros/SombrerosLateral/sombreros_lateral.tscn" id="6_d7mow"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qdg4"]
+size = Vector2(16, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_do2ux"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2skr4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_qhiwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_2skr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_saq20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_2skr4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03883"]
+size = Vector2(27.7778, 47.2222)
+
+[node name="Personaje" type="CharacterBody2D"]
+scale = Vector2(0.6, 0.6)
+script = ExtResource("1_i21ui")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_6qdg4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_do2ux")
+animation = &"walk"
+frame_progress = 0.974788
+
+[node name="Accesorios" type="Node2D" parent="."]
+
+[node name="Sombreros" parent="Accesorios" instance=ExtResource("3_uggpa")]
+
+[node name="SombrerosLateral" parent="Accesorios" instance=ExtResource("6_d7mow")]
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+scale = Vector2(0.6, 0.6)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.32455e-06, 4.16667)
+shape = SubResource("RectangleShape2D_03883")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+limit_left = 20
+limit_bottom = 650
+
+[node name="FloorDetector" type="RayCast2D" parent="."]
+
+[connection signal="barreraBajaPierde" from="." to="." method="_on_barrera_baja_pierde"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

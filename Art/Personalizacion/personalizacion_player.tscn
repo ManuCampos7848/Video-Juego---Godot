@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci0o4viab76my"]
+
+[ext_resource type="Texture2D" uid="uid://me6gkxsbrjc2" path="res://Art/Personalizacion/PlayerBase.png" id="1_ido2e"]
+[ext_resource type="Script" path="res://Art/Personalizacion/personalizacion_player.gd" id="1_qch5b"]
+[ext_resource type="PackedScene" uid="uid://c52iqkeq78k7p" path="res://Art/Personalizacion/Sombreros/sombreros.tscn" id="3_rd3px"]
+
+[node name="PersonalizacionPlayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -4.0
+offset_right = -5.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qch5b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(576, 324)
+scale = Vector2(7, 8.259)
+texture = ExtResource("1_ido2e")
+
+[node name="Sombreros" parent="Sprite2D" instance=ExtResource("3_rd3px")]
+
+[node name="BotonSiguienteSombrero" type="Button" parent="."]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 128.0
+offset_right = 1054.0
+offset_bottom = 271.0
+text = "Cambiar Sombrero"
+
+[node name="Iniciar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 502.0
+offset_right = 701.0
+offset_bottom = 596.0
+text = "Iniciar"
+
+[connection signal="pressed" from="BotonSiguienteSombrero" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Iniciar" to="." method="_on_iniciar_pressed"]

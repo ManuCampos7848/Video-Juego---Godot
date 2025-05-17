@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://by2pf7feypmjt"]
+
+[ext_resource type="Texture2D" uid="uid://ycri7a2tkuj2" path="res://Art/Botones/InicioHover.png" id="1_0otii"]
+[ext_resource type="Script" path="res://Art/Menu/menu_inicio.gd" id="1_7ecat"]
+[ext_resource type="Texture2D" uid="uid://baknklmuqhyq3" path="res://Art/Botones/But_InicioPressed.png" id="2_1wdg1"]
+
+[node name="MenuInicio" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7ecat")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0313726, 0.00392157, 0.00392157, 1)
+
+[node name="Iniciar" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_0otii")
+texture_pressed = ExtResource("2_1wdg1")
+
+[connection signal="pressed" from="Iniciar" to="." method="_on_iniciar_pressed"]
