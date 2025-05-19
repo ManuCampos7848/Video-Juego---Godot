@@ -51,4 +51,4 @@ text = "Combinar Sombrero"
 
 [connection signal="pressed" from="BotonSiguienteSombrero" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Iniciar" to="." method="_on_iniciar_pressed"]
-[connection signal="pressed" from="CombinarSombrero" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="CombinarSombrero" to="." method="_on_combinar_sombrero_pressed"]

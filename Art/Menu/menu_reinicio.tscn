@@ -28,12 +28,21 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -256.0
-offset_top = -256.0
+offset_top = -410.0
 offset_right = 256.0
-offset_bottom = 256.0
+offset_bottom = 102.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("1_a0byp")
 texture_pressed = ExtResource("2_ncht4")
 
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 378.0
+offset_right = 693.0
+offset_bottom = 499.0
+text = "Volver de  0"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

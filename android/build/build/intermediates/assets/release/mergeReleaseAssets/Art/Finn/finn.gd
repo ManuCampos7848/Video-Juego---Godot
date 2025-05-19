@@ -1,14 +1,29 @@
 extends CharacterBody2D
 
+# -----------------------------------------------------------
+# Señales
 signal barreraBajaPierde
 signal caer
+# -----------------------------------------------------------
 
-const SPEED = 195.0
-const JUMP_VELOCITY = -198.0
 
+# -----------------------------------------------------------
+# Variables de velocidad y de caida
+const SPEED = 180.0
+const JUMP_VELOCITY = -178.0
+# -----------------------------------------------------------
+
+
+
+# -----------------------------------------------------------
+# Fisica (gravedad) del personaje
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+# -----------------------------------------------------------
 
+
+
+# -----------------------------------------------------------
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -39,10 +54,6 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body):
 	
-	if body.name == "Perder":	
+	if body.name == "Perder":
 		barreraBajaPierde.emit()
-	
-	
-	if body.name == "Meteorito":
-		print("carolo")
 

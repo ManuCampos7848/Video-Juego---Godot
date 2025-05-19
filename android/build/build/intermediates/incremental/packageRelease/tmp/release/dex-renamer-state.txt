@@ -1,4 +1,4 @@
-#Sun May 11 07:56:00 COT 2025
+#Sun May 18 20:11:19 COT 2025
 base.0=C\:\\Users\\manu7\\Desktop\\JuegoBcan\\android\\build\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

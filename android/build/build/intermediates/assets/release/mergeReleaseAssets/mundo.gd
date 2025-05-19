@@ -2,21 +2,15 @@ extends Node2D
 
 # -----------------------------------------------------------
 #  Atributos para colisiones y animaciones
-@onready var player = $Finn
+@onready var player = $Personaje
 @onready var contadorVida = $ContadorVida/Vidas
 @onready var elevador = $Elevador
 # -----------------------------------------------------------
 
-# -----------------------------------------------------------
-# Variables para meteoritos
-@export var meteorito_scene: PackedScene  # Asigna Meteorito.tscn en el inspector
-@export var intervalo_meteoritos: float = 2.0  # Tiempo entre meteoritos (segundos)
-var timer_meteoritos: Timer
-# -----------------------------------------------------------
 
 # -----------------------------------------------------------
 # Persistencia de la vida
-var vidas = Global.vidas_persistentes  # Usar el valor persistente
+var vidas = Global.vidas_persistentes 
 # -----------------------------------------------------------
 
 
@@ -30,65 +24,11 @@ var posicion_superior = 400
 var posicion_inferior = 500
 # -----------------------------------------------------------
 
-
 # -----------------------------------------------------------
 func _ready():
 	tween  = create_tween()
 	contadorVida.text = str(vidas)
 	iniciar_movimiento_elevador()
-	configurar_meteoritos()  # Inicializar generación de meteoritos
-	#caerNube("hola", true)
-	pass # Replace with function body.
-# -----------------------------------------------------------
-
-# -----------------------------------------------------------
-# Configura el temporizador para generar meteoritos
-func configurar_meteoritos():
-	timer_meteoritos = Timer.new()
-	add_child(timer_meteoritos)
-	timer_meteoritos.wait_time = intervalo_meteoritos
-	timer_meteoritos.timeout.connect(_generar_meteorito)
-	timer_meteoritos.start()
-# -----------------------------------------------------------
-
-# -----------------------------------------------------------
-# Genera un meteorito en posición aleatoria (dentro de la cámara visible)
-func _generar_meteorito():
-	if not meteorito_scene:
-		return
-
-	var meteorito = meteorito_scene.instantiate()
-	add_child(meteorito)
-
-	# Obtener la posición FUTURA del jugador (estimación)
-	var player = get_node("Finn")
-	var camera = get_viewport().get_camera_2d()
-	
-	if not player or not camera:
-		meteorito.queue_free()
-		return
-
-	# Calcular posición de spawn considerando movimiento
-	var viewport_size = get_viewport().size
-	var player_velocity = player.velocity
-	var spawn_distance_ahead = 1.5  # Segundos adelante (ajustable)
-	
-	# Posición futura estimada del jugador
-	var future_player_pos = player.global_position + (player_velocity * spawn_distance_ahead)
-	var camera_offset = future_player_pos - camera.get_screen_center_position()
-
-	# Generar en el borde superior con margen
-	var spawn_x = randf_range(
-		future_player_pos.x - viewport_size.x/2 + 100,
-		future_player_pos.x + viewport_size.x/2 - 100
-	)
-	var spawn_y = future_player_pos.y - viewport_size.y/2 - 100
-	
-	meteorito.global_position = Vector2(spawn_x, spawn_y)
-
-	# Dirección hacia la posición futura estimada
-	meteorito.direction = (future_player_pos - meteorito.global_position).normalized()
-#print("Meteorito generado en posición de cámara: ", meteorito.position)
 # -----------------------------------------------------------
 
 # -----------------------------------------------------------
@@ -125,8 +65,6 @@ func _on_tween_completed():
 # -----------------------------------------------------------
 # Proces delta que mira la posicion del jugador para hacer caer las nubes
 func _process(delta):
-	#_generar_meteorito()
-	# -----------------------------------------------------------
 	# Actualizar la posición del jugador en cada frame
 	var posicionPlayer = player.position
 	# Teletransporte si el jugador pasa cierta posición
@@ -162,7 +100,7 @@ func caerNube(nube, posicionNube, posicionPlayer):
 
 # -----------------------------------------------------------
 # Funcion game over del personaje 
-func _on_finn_barrera_baja_pierde():
+func _on_personaje_barrera_baja_pierde():
 	if vidas <= 1:
 		get_tree().change_scene_to_file("res://Art/Menu/menu_reinicio.tscn")
 	else:
@@ -172,4 +110,3 @@ func _on_finn_barrera_baja_pierde():
 		# Recargar la escena actual
 		get_tree().reload_current_scene()
 # -----------------------------------------------------------
-
