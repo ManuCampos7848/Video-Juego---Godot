@@ -49,6 +49,6 @@ offset_right = 1054.0
 offset_bottom = 376.0
 text = "Combinar Sombrero"
 
-[connection signal="pressed" from="BotonSiguienteSombrero" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="Iniciar" to="." method="_on_iniciar_pressed"]
-[connection signal="pressed" from="CombinarSombrero" to="." method="_on_combinar_sombrero_pressed"]
+[connection signal="pressed" from="BotonSiguienteSombrero" to="." method="_on_BotonSiguienteSombrero_pressed"]
+[connection signal="pressed" from="Iniciar" to="." method="_on_Iniciar_pressed"]
+[connection signal="pressed" from="CombinarSombrero" to="." method="_on_CombinarSombrero_pressed"]

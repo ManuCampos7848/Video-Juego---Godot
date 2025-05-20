@@ -59,7 +59,17 @@ frame_progress = 0.974788
 
 [node name="Sombreros" parent="Accesorios" instance=ExtResource("3_uggpa")]
 
+[node name="Sombrero3" parent="Accesorios/Sombreros" index="2"]
+position = Vector2(0, -8.33333)
+
+[node name="Sombrero4" parent="Accesorios/Sombreros" index="3"]
+position = Vector2(0, 1.66667)
+
+[node name="Sombrero8" parent="Accesorios/Sombreros" index="7"]
+visible = true
+
 [node name="SombrerosLateral" parent="Accesorios" instance=ExtResource("6_d7mow")]
+visible = false
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -80,3 +90,5 @@ limit_bottom = 650
 
 [connection signal="barreraBajaPierde" from="." to="." method="_on_barrera_baja_pierde"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+
+[editable path="Accesorios/Sombreros"]
